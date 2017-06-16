@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt 
 import seaborn as sns
 from visualizingpermutationsampling import permutation_sample
+from generatingbootstrapreplicates import draw_bs_reps
 
 def draw_perm_reps(data_1, data_2, func, size=1):
     """Generate multiple permutation replicates."""
@@ -77,4 +78,18 @@ p = np.sum(perm_replicates >= empirical_diff_means) / float(len(perm_replicates)
 
 # Print the result
 print('p-value =', p)
+
+# A one-sample bootstrap hypothesis test
+
+# Make an array of translated impact forces: translated_force_b
+translated_force_b = force_b-np.mean(force_b) + 0.55
+
+# Take bootstrap replicates of Frog B's translated impact forces: bs_replicates
+bs_replicates = draw_bs_reps(translated_force_b, np.mean, 10000)
+
+# Compute fraction of replicates that are less than the observed Frog B force: p
+p = np.sum(bs_replicates <= np.mean(force_b)) / 10000.0
+
+# Print the p-value
+print('p = ', p)
 
