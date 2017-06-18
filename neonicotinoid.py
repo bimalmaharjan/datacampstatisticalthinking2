@@ -4,6 +4,7 @@ sys.path.append(ecdfpath)
 from  statisticalthinkingpart1.empiricalcumulativedistribution import  ecdf
 import matplotlib.pyplot as plt 
 import seaborn as sns
+import numpy as np
 
 control = np.array([  4.159234,   4.408002,   0.172812,   3.498278,   3.104912,
          5.164174,   6.615262,   4.633066,   0.170408,   2.65    ,
